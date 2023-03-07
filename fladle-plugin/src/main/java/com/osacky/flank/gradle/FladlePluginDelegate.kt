@@ -121,7 +121,7 @@ class FladlePluginDelegate {
         environment(mapOf("GOOGLE_APPLICATION_CREDENTIALS" to config.serviceAccountCredentials.get()))
       }
       dependsOn(writeConfigProps)
-      if (config.dependOnAssemble.isPresent && config.dependOnAssemble.get()) {
+      if (project.name != project.rootProject.name && config.dependOnAssemble.isPresent && config.dependOnAssemble.get()) {
         val testedExtension = requireNotNull(project.extensions.findByType(TestedExtension::class.java)) { "Could not find TestedExtension in ${project.name}" }
         testedExtension.testVariants.configureEach {
           if (testedVariant.isExpectedVariant(config)) {
