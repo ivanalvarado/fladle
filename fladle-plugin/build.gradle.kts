@@ -168,7 +168,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).conf
 }
 
 java {
-  toolchain {
-    languageVersion.set(JavaLanguageVersion.of(8))
-  }
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
 }

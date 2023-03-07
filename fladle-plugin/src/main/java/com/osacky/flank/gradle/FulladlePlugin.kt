@@ -73,10 +73,30 @@ class FulladlePlugin : Plugin<Project> {
 }
 
 fun configureModule(project: Project, flankGradleExtension: FlankGradleExtension) = project.run {
+  val configs = flankGradleExtension.configs
   val fulladleModuleExtension = extensions.findByType(FulladleModuleExtension::class.java) ?: return
   if (!hasAndroidTest) {
     return
   }
+
+  // configs.forEach { config ->
+  //   if (config.dependOnAssemble.isPresent && config.dependOnAssemble.get()) {
+  //     val testedExtension = project.extensions.findByType(TestedExtension::class.java)
+  //     testedExtension?.testVariants?.configureEach {
+  //       if (testedVariant.isExpectedVariant(config)) {
+  //         if (testedVariant.assembleProvider.isPresent) {
+  //           project.tasks.apply {
+  //             dependsOn(testedVariant.assembleProvider)
+  //           }
+  //         }
+  //         if (assembleProvider.isPresent) {
+  //           dependsOn(assembleProvider)
+  //         }
+  //       }
+  //     } ?: println("Could not find TestedExtension in ${project.name}")
+  //   }
+  // }
+
 
   val testedExtension = extensions.findByType(TestedExtension::class.java) ?: return
   // Only configure the first test variant per module.
